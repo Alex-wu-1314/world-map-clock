@@ -31,7 +31,7 @@
   }
   .app{max-width:1480px;margin:0 auto;padding:22px 22px 40px}
 
-  /* 宽屏：铺满窗口，地图按可用高度取最大 2:1 尺寸（由 JS 量出来写死宽高） */
+  /* Wide screens: fill the window; the map takes the largest 2:1 size that fits the available height (measured by JS and sized explicitly) */
   @media (min-width:1100px){
     .app{
       max-width:none; margin:0; padding:14px 20px 12px;
@@ -44,7 +44,7 @@
     .mapwrap{width:100%; height:100%; aspect-ratio:auto}
   }
 
-  /* ---------- 顶部 ---------- */
+  /* ---------- Header ---------- */
   header{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:16px}
   h1{margin:0;font-size:22px;font-weight:650;letter-spacing:.5px}
   h1 span{color:var(--accent)}
@@ -62,7 +62,7 @@
   .reftabs button:hover{color:var(--txt);border-color:rgba(122,166,255,.35)}
   .reftabs button.on{background:rgba(67,198,255,.14);border-color:rgba(67,198,255,.5);color:var(--accent)}
 
-  /* ---------- 工具条 ---------- */
+  /* ---------- Toolbar ---------- */
   .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
   .chips{display:flex;gap:6px;flex-wrap:wrap}
   .chip{font:inherit;font-size:12px;padding:5px 11px;border-radius:999px;cursor:pointer;
@@ -80,14 +80,14 @@
   .tg.link{text-decoration:none}
   .tg.link:hover{color:var(--accent);border-color:rgba(67,198,255,.5)}
 
-  /* ---------- 地球视图 ---------- */
+  /* ---------- Globe view ---------- */
   #globeCv{position:absolute;inset:0;width:100%;height:100%;display:none;touch-action:none}
   .mapwrap.globe #globeCv{display:block}
   .mapwrap.globe #map,.mapwrap.globe #mapTop,.mapwrap.globe #nightCv{display:none}
   .mapwrap.globe{cursor:default}
   .mapwrap.globe.dragging{cursor:grabbing}
 
-  /* ---------- 城市搜索 ---------- */
+  /* ---------- City search ---------- */
   .search{position:relative;flex:0 0 auto}
   .search input{font:inherit;font-size:12.5px;width:172px;padding:6px 10px;border-radius:8px;
     border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--txt);outline:none}
@@ -104,7 +104,7 @@
   .search .results span{color:var(--dim);font-size:11.5px;white-space:nowrap}
   .search .results .none{color:var(--dim);font-size:12px;padding:8px 10px}
 
-  /* ---------- 地图 ---------- */
+  /* ---------- Map ---------- */
   .mapwrap{position:relative;width:100%;aspect-ratio:2/1;border-radius:16px;overflow:hidden;
     border:1px solid var(--line);
     background:radial-gradient(140% 120% at 50% 0%,#101b30 0%,#0a1120 60%,#070b14 100%);
@@ -112,9 +112,9 @@
   #map,#mapTop{position:absolute;inset:0;display:block;width:100%;height:100%}
   #nightCv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transition:opacity .35s}
   .mapwrap.hideNight #nightCv{opacity:0}
-  /* 缩放中先隐藏城市标签（尺寸与避让需要重排），结束后统一恢复 */
+  /* Hide city labels while zooming (sizes and collision layout need a reflow), then restore them together when done */
   .mapwrap.zooming #cities text{opacity:0}
-  /* 动画期间关掉圆点的 r 过渡，逐帧尺寸立即生效，屏幕上的点大小才不会忽大忽小 */
+  /* Disable the dot's r transition during animations so per-frame sizes apply immediately and on-screen dot sizes stay stable */
   .mapwrap.zooming #cities .city circle{transition:none}
   .mapwrap{touch-action:none;cursor:default;
     -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
@@ -126,7 +126,7 @@
   #cities .city text{pointer-events:none;transition:opacity .18s}
   #cities .city.dim{opacity:.16}
 
-  /* ---------- 悬浮卡 ---------- */
+  /* ---------- Hover card ---------- */
   .tip{position:absolute;z-index:30;min-width:224px;max-width:300px;padding:12px 14px;border-radius:13px;
     background:rgba(9,14,26,.95);border:1px solid rgba(122,166,255,.28);
     box-shadow:0 18px 44px -12px rgba(0,0,0,.9);backdrop-filter:blur(14px);
@@ -147,7 +147,7 @@
   .cinfo .tline{font-size:11.5px;color:var(--dim);display:flex;justify-content:space-between;gap:10px;margin-top:3px}
   .cinfo .tline b{color:#dbe6fa;font-weight:500;font-variant-numeric:tabular-nums}
 
-  /* ---------- 底部 ---------- */
+  /* ---------- Footer ---------- */
   .foot{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-top:12px}
   .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--dim);align-items:center}
   .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
@@ -160,7 +160,7 @@
   .pin button{all:unset;cursor:pointer;color:#5d6f8c;font-size:13px;line-height:1;padding:1px 2px}
   .pin button:hover{color:#ff8f8f}
 
-  /* ---------- 触屏底部卡片 ---------- */
+  /* ---------- Touch bottom sheet ---------- */
   .sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;max-height:52vh;overflow:auto;
     transform:translateY(112%);transition:transform .3s cubic-bezier(.2,.85,.2,1);
     background:rgba(9,14,25,.975);border-top:1px solid rgba(122,166,255,.28);
@@ -189,11 +189,11 @@
     .pin button{font-size:17px;padding:4px 8px}
     .legend{font-size:12.5px}
   }
-  /* ---------- 手机横屏：地图铺满整屏，控件浮在上面 ---------- */
+  /* ---------- Phone landscape: the map fills the screen and controls float above it ---------- */
   @media (max-height:560px) and (orientation:landscape){
     html,body{overflow:hidden;overscroll-behavior:none}
-    /* 固定在视口内：手机浏览器地址栏显示/隐藏会改变可用高度，
-       用 fixed + inset 把整页钉在可视区，避免 100vh 把顶部顶到地址栏下面 */
+    /* Pin to the viewport: mobile browser address-bar show/hide changes the available height,
+       so use fixed + inset to anchor the page to the visual viewport and avoid 100vh pushing the top under the address bar */
     .app{position:fixed;top:0;left:0;right:0;max-width:none;margin:0;padding:0;display:block;
       height:100vh;height:100dvh;height:var(--appH,100dvh);
       overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
@@ -247,7 +247,7 @@
     .sheet{max-height:74vh}
   }
 
-  /* ---------- 竖屏提示 ---------- */
+  /* ---------- Portrait hint ---------- */
   .rotateHint{display:none}
   @media (max-width:900px) and (orientation:portrait){
     .rotateHint{display:flex;align-items:center;gap:7px;position:fixed;z-index:80;
@@ -360,7 +360,7 @@
   </div>
 </div>
 
-<!-- 触屏：点选城市后的底部卡片 -->
+<!-- Touch: bottom sheet shown after tapping a city -->
 <div class="rotateHint" id="rotateHint">↻ 横屏观看，地图更大</div>
 
 <div class="sheet" id="sheet" aria-hidden="true" role="dialog" aria-label="城市当地时间">
@@ -381,14 +381,14 @@ window.REGION_EN = {"全部":"All","亚洲":"Asia","欧洲":"Europe","非洲":"A
 <script>
 "use strict";
 /* =========================================================
-   1. 城市数据（经纬度 + IANA 时区，时区自带夏令时规则）
+   1. City data (coordinates + IANA timezone; timezone rules include DST)
    ========================================================= */
 const CITIES = window.CITIES_DATA;
 const COUNTRY_EN = window.COUNTRY_EN || {};
 const REGION_EN = window.REGION_EN || {};
 
 /* =========================================================
-   1.5 中英文切换
+   1.5 Chinese/English switching
    ========================================================= */
 const I18N = {
   zh: {
@@ -441,13 +441,13 @@ const I18N = {
   }
 };
 
-/* 语言：记住用户的手动选择；第一次打开一律英文（国际化默认），
-   想默认跟随系统就改成 navigator.language 判断 */
+/* Language: remember the user's manual choice; default to English on first open (international audience),
+   to follow the system language instead, switch to a navigator.language check */
 let lang = (function () {
   try {
     const saved = localStorage.getItem("wtm-lang");
     if (saved === "zh" || saved === "en") return saved;
-  } catch (e) { /* 忽略 */ }
+  } catch (e) { /* ignore */ }
   return "en";
 })();
 
@@ -457,26 +457,26 @@ function T(key, ...args) {
   if (v === undefined) return (I18N.zh[key] !== undefined ? I18N.zh[key] : key);
   return typeof v === "function" ? v(...args) : v;
 }
-/* 城市名：中文模式用中文名，英文模式优先用英文名 */
+/* City name: Chinese in zh mode; English preferred in en mode */
 function cityName(c) {
   if (lang === "en") return c.e || c.n;
   return c.n;
 }
-/* 国家名 */
+/* Country name */
 function countryName(c) {
   if (lang === "en") return COUNTRY_EN[c.c] || c.c;
   return c.c;
 }
-/* 大洲名 */
+/* Region name */
 function regionName(zh) {
   return lang === "en" ? (REGION_EN[zh] || zh) : zh;
 }
-/* 城市是否值得显示名称：中文模式下没有中文名的只画点 */
+/* Whether a city deserves a label: in zh mode, cities without a Chinese name are drawn as dots only */
 function hasLabel(c) {
   if (lang === "en") return true;
   return /[\u4e00-\u9fff]/.test(c.n);
 }
-/* 日期：交给 Intl，顺带拿到正确的当地星期 */
+/* Date: delegate to Intl, which also yields the correct local weekday */
 function dateText(tz, now) {
   try {
     return new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US", {
@@ -490,18 +490,18 @@ function dateText(tz, now) {
 }
 
 /* =========================================================
-   2. 投影与太阳位置
+   2. Projection and solar position
    ========================================================= */
 const W = 1200, H = 600, RAD = Math.PI / 180;
 const X = lo => (lo + 180) / 360 * W;
 const Y = la => (90 - la) / 180 * H;
 
-/* 当前可视区域（viewBox）。聚焦大洲时只改这个矩形，城市坐标始终不变。
-   必须保持 2:1 宽高比，否则 preserveAspectRatio 会留黑边并使屏幕坐标映射失真。 */
+/* Current viewport (viewBox). Focusing a region only changes this rectangle; city coordinates never change.
+   The 2:1 aspect ratio must be preserved, otherwise preserveAspectRatio adds letterboxing and distorts screen-to-map mapping. */
 let vb = { x: 0, y: 0, w: W, h: H };
-let mk = 1;   // 标记缩放：把“屏幕像素”换算成 SVG 单位，缩放与窄屏都靠它
+let mk = 1;   // Marker scale: converts "screen pixels" into SVG units; used by both zoom and narrow screens
 
-/* 太阳赤纬 / 赤经 / 格林尼治恒星时（suncalc 同源算法，精度约 0.01°） */
+/* Solar declination / right ascension / Greenwich sidereal time (same approach as suncalc, accuracy about 0.01°) */
 function sunGeom(ts) {
   const jd = ts / 86400000 + 2440587.5;
   const d = jd - 2451545.0;
@@ -514,13 +514,13 @@ function sunGeom(ts) {
   const st = RAD * (280.16 + 360.9856235 * d);
   return { dec, ra, st };
 }
-/* 太阳高度角（弧度），lat/lon 为度 */
+/* Solar altitude in radians; lat/lon in degrees */
 function sunAlt(lat, lon, s) {
   const phi = lat * RAD;
   const Hh = s.st + lon * RAD - s.ra;
   return Math.asin(Math.sin(phi) * Math.sin(s.dec) + Math.cos(phi) * Math.cos(s.dec) * Math.cos(Hh));
 }
-/* 太阳直射点经纬度（度） */
+/* Subsolar point latitude/longitude (degrees) */
 function sunLatLon(ts) {
   const s = sunGeom(ts);
   let lon = (s.ra - s.st) / RAD % 360;
@@ -530,7 +530,7 @@ function sunLatLon(ts) {
 }
 
 /* =========================================================
-   3. 时区工具（全部基于内置 Intl，含夏令时规则）
+   3. Timezone helpers (all based on built-in Intl, including DST rules)
    ========================================================= */
 const fmtCache = new Map();
 function partsIn(tz, date) {
@@ -545,22 +545,22 @@ function partsIn(tz, date) {
   }
   const o = {};
   for (const p of f.formatToParts(date)) if (p.type !== "literal") o[p.type] = p.value;
-  o.hour = String(+o.hour % 24).padStart(2, "0");   // 个别引擎会给出 24
+  o.hour = String(+o.hour % 24).padStart(2, "0");   // some engines may return 24
   return o;
 }
 const WD = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
 const WD_ZH = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 
-/* 时区偏移（分钟）：把该时区的“墙上时间”当作 UTC 解析，与真实 UTC 求差 */
+/* Timezone offset in minutes: parse the zone's wall-clock time as UTC and subtract the real UTC time */
 function tzOffset(tz, date) {
   const p = partsIn(tz, date);
   const asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second);
   const base = Math.floor(date.getTime() / 1000) * 1000;
   return Math.round((asUTC - base) / 60000);
 }
-/* 夏令时判定：直接采用 tzdata 给出的时区长名（"Eastern Daylight Time"/"British Summer Time"），
-   比“比全年最小时差大”这种偏移比较更可靠——摩洛哥是斋月回拨的“反向夏令时”，
-   按偏移比较会被常年误标成夏令时。名字里没有 Daylight/Summer 就不标记。 */
+/* DST detection: use the zone's long name from tzdata ("Eastern Daylight Time" / "British Summer Time").
+   This is more reliable than comparing offsets against the yearly minimum — Morocco's Ramadan rollback is a "reverse DST"
+   that an offset comparison would flag year-round. If the name lacks Daylight/Summer, no DST marker is shown. */
 const nameFmt = new Map();
 function tzLongName(tz, date) {
   let f = nameFmt.get(tz);
@@ -582,7 +582,7 @@ function fmtOffset(min) {
 }
 
 /* =========================================================
-   4. 日出日落（对 24 小时区间扫描太阳高度，-0.833° 为地平线）
+   4. Sunrise/sunset (scan solar altitude over 24 hours; -0.833° is the horizon)
    ========================================================= */
 const riseCache = new Map();
 function riseSet(city, now) {
@@ -606,14 +606,14 @@ function riseSet(city, now) {
 }
 
 /* =========================================================
-   5. 昼夜覆盖层（画布逐像素，含暮光渐变）
+   5. Day/night overlay (per-pixel canvas with twilight gradient)
    ========================================================= */
 const cv = document.getElementById("nightCv");
 const ctx = cv.getContext("2d");
 let CW = cv.width, CH = cv.height;
 
-/* 夜间层是位图，按显示尺寸 × 像素比重新分配，避免大屏被拉伸发虚。
-   上限 1600×800：再大也只是渐变更细，但每帧像素数会翻倍，拖慢手势。 */
+/* The night layer is a bitmap sized to display dimensions × pixel ratio to avoid blurry upscaling on large screens.
+   Cap at 1600×800: larger only refines the gradient but doubles per-frame pixels and slows gestures. */
 function sizeNightCanvas() {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const host = document.getElementById("mapwrap");
@@ -626,14 +626,14 @@ function sizeNightCanvas() {
   cv.height = CH;
   return true;
 }
-/* 两套查表：夜间遮罩（3° ~ -16° 平滑过渡）与白天暖光（0° ~ 26°） */
+/* Two LUTs: night mask (smooth 3° to -16°) and daytime warm light (0° to 26°) */
 const LUT_N = new Uint8Array(1025);
 const LUT_D = new Uint8Array(513);
 (function buildLut() {
   const ss = t => { t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t); };
   for (let i = 0; i <= 1024; i++) {
     const alt = Math.asin(Math.max(-1, Math.min(1, i / 512 - 1))) / RAD;
-    LUT_N[i] = ss((3 - alt) / 19) * 150;      // 最暗时 150/255 ≈ 59% 不透明度
+    LUT_N[i] = ss((3 - alt) / 19) * 150;      // at the darkest, 150/255 ≈ 59% opacity
   }
   for (let i = 0; i <= 512; i++) {
     const alt = Math.asin(Math.max(-1, Math.min(1, i / 512))) / RAD;
@@ -647,7 +647,7 @@ function drawNight(now) {
   const data = img.data;
   const sinDec = Math.sin(s.dec), cosDec = Math.cos(s.dec);
   const cosH = new Float64Array(CW), sinLat = new Float64Array(CH), cosLat = new Float64Array(CH);
-  /* 只计算当前可视区域，放大后投影像素更细，不会糊 */
+  /* Only compute the current viewport; zoomed-in pixels are finer and stay sharp */
   for (let px = 0; px < CW; px++) {
     const x = vb.x + (px + 0.5) / CW * vb.w;
     const lon = x / W * 360 - 180;
@@ -677,7 +677,7 @@ function drawNight(now) {
   ctx.putImageData(img, 0, 0);
 }
 
-/* 太阳直射点标记 */
+/* Subsolar point marker */
 const sunGlow = document.getElementById("sunGlow");
 const sunCore = document.getElementById("sunCore");
 function placeSun(now) {
@@ -686,7 +686,7 @@ function placeSun(now) {
   if (lon > 180) lon -= 360;
   if (lon < -180) lon += 360;
   const x = X(lon), y = Y(s.dec / RAD);
-  const k = vb.w / W;                       // 缩放后保持屏幕上大小不变
+  const k = vb.w / W;                       // keep a constant on-screen size when zoomed
   sunGlow.setAttribute("cx", x); sunGlow.setAttribute("cy", y);
   sunGlow.setAttribute("r", 40 * k);
   sunCore.setAttribute("cx", x); sunCore.setAttribute("cy", y);
@@ -696,7 +696,7 @@ function placeSun(now) {
 }
 
 /* =========================================================
-   6. 绘制地图底图与经纬网
+   6. Draw the basemap and graticule
    ========================================================= */
 document.getElementById("land").setAttribute("d", window.WORLD_PATHS);
 (function grid() {
@@ -714,17 +714,17 @@ document.getElementById("land").setAttribute("d", window.WORLD_PATHS);
 })();
 
 /* =========================================================
-   6.5 水体名称（放大后淡显，位置固定，无需联网）
-   w = 显示该标注所需的最大视野宽度：1200 表示全景常显，其它表示放大后才出现
+   6.5 Water-body labels (fade in when zoomed, fixed positions, no network)
+   w = maximum viewport width at which this label shows: 1200 means always visible at full extent; others appear only when zoomed in
    ========================================================= */
 const WATERS = [
-  /* 大洋 */
+  /* Oceans */
   { n: "太平洋", la: 5, lo: -150, w: 1200 },
   { n: "大西洋", la: 16, lo: -34, w: 1200 },
   { n: "印度洋", la: -27, lo: 78, w: 1200 },
   { n: "北冰洋", la: 84, lo: 5, w: 1200 },
   { n: "南大洋", la: -57, lo: 20, w: 1200 },
-  /* 欧洲 · 地中海一带 */
+  /* Europe · Mediterranean */
   { n: "地中海", la: 35.0, lo: 18.0, w: 560 },
   { n: "亚得里亚海", la: 42.8, lo: 15.4, w: 560 },
   { n: "爱琴海", la: 38.4, lo: 25.0, w: 560 },
@@ -737,14 +737,14 @@ const WATERS = [
   { n: "巴伦支海", la: 74.0, lo: 40.0, w: 560 },
   { n: "格陵兰海", la: 76.0, lo: -8.0, w: 560 },
   { n: "比斯开湾", la: 45.0, lo: -4.5, w: 560 },
-  /* 中东 · 南亚 */
+  /* Middle East · South Asia */
   { n: "红海", la: 20.0, lo: 38.5, w: 560 },
   { n: "波斯湾", la: 27.5, lo: 51.5, w: 560 },
   { n: "阿拉伯海", la: 15.0, lo: 63.0, w: 560 },
   { n: "亚丁湾", la: 12.5, lo: 47.0, w: 560 },
   { n: "孟加拉湾", la: 15.0, lo: 88.0, w: 560 },
   { n: "安达曼海", la: 10.0, lo: 94.0, w: 560 },
-  /* 东亚 · 东南亚 */
+  /* East Asia · Southeast Asia */
   { n: "南海", la: 14.0, lo: 113.0, w: 560 },
   { n: "东海", la: 28.0, lo: 125.0, w: 560 },
   { n: "黄海", la: 35.0, lo: 123.0, w: 560 },
@@ -754,21 +754,21 @@ const WATERS = [
   { n: "泰国湾", la: 8.5, lo: 101.0, w: 560 },
   { n: "帝汶海", la: -11.5, lo: 127.0, w: 340 },
   { n: "阿拉弗拉海", la: -9.5, lo: 135.0, w: 340 },
-  /* 非洲 */
+  /* Africa */
   { n: "几内亚湾", la: 1.0, lo: 2.0, w: 560 },
   { n: "莫桑比克海峡", la: -18.0, lo: 41.0, w: 560 },
   { n: "维多利亚湖", la: -1.0, lo: 33.0, w: 340 },
   { n: "坦噶尼喀湖", la: -6.0, lo: 29.5, w: 340 },
-  /* 美洲 */
+  /* Americas */
   { n: "加勒比海", la: 15.0, lo: -75.0, w: 560 },
   { n: "墨西哥湾", la: 25.0, lo: -90.0, w: 560 },
   { n: "哈得孙湾", la: 60.0, lo: -85.0, w: 560 },
   { n: "五大湖", la: 45.3, lo: -84.0, w: 340 },
   { n: "加利福尼亚湾", la: 27.5, lo: -111.5, w: 340 },
-  /* 大洋洲 */
+  /* Oceania */
   { n: "珊瑚海", la: -18.0, lo: 155.0, w: 560 },
   { n: "塔斯曼海", la: -38.0, lo: 160.0, w: 560 },
-  /* 内陆湖 */
+  /* Inland lakes */
   { n: "贝加尔湖", la: 53.5, lo: 108.0, w: 340 }
 ];
 
@@ -809,7 +809,7 @@ function refreshWaterText() {
   }
 }
 
-/* 水体标注的尺寸与显隐：跟随缩放，屏幕上大小恒定 */
+/* Water label size and visibility: follows zoom, constant on-screen size */
 function updateWaters() {
   const fs = BASE_FONT * 0.88 * mk;
   for (const o of waterNodes) {
@@ -822,7 +822,7 @@ function updateWaters() {
 }
 
 /* =========================================================
-   7. 城市图层 + 标签自动避让
+   7. City layer + automatic label decluttering
    ========================================================= */
 const gCities = document.getElementById("cities");
 let showLabels = true;
@@ -855,32 +855,32 @@ const cityNodes = CITIES.map((c, i) => {
            latin: !/[\u4e00-\u9fff]/.test(cityName(c)) };
 });
 
-/* 语言切换后刷新所有城市标签文字 */
+/* Refresh all city label text after a language switch */
 function refreshCityText() {
   cityNodes.forEach(n => {
     const txt = cityName(n.c);
     n.label.textContent = txt;
     n.latin = !/[\u4e00-\u9fff]/.test(txt);
   });
-  lastMk = -1;   // 强制下一轮 updateMarkers 重算所有字号（否则切换语言后沿用旧尺寸）
+  lastMk = -1;   // force the next updateMarkers pass to recompute all font sizes; otherwise old sizes persist after a language switch
 }
 
-/* 只更新标记尺寸与可见性（每帧调用，尽量少写属性） */
+/* Update marker size and visibility only (called every frame; minimize attribute writes) */
 let lastMk = -1, lastTier = 0;
 function updateMarkers(v) {
   vb = v;
   const host = document.getElementById("mapwrap");
   const cw = host ? host.clientWidth : 0;
   const zoom = W / v.w;
-  mk = Math.max(1, W / (cw || W)) / zoom * (coarse ? 1.18 : 1);   // 触屏上字与点再放大一点
+  mk = Math.max(1, W / (cw || W)) / zoom * (coarse ? 1.18 : 1);   // enlarge text and dots a bit on touch devices
   const pad = 44 * mk;
 
-  /* 两级：全景只显示一级；放大到 3 倍以上才出现二级。
-     双击一次是 2.2 倍（仍是一级），双击两次 4.84 倍（出二级），滚轮同一门槛。
-     触屏另加一道闸：二级城市一屏超过上限就退回一级，按屏幕面积算（手机 ~40 座，平板基本不触发） */
+  /* Two tiers: show tier 1 at full extent; tier 2 appears only above 3× zoom.
+     One double-click is 2.2× (still tier 1), two is 4.84× (tier 2 appears); the wheel uses the same threshold.
+     Touch adds another gate: revert to tier 1 if tier-2 cities on screen exceed a cap based on screen area (~40 on phones; tablets rarely trigger it) */
   let tier = zoom >= 3.0 ? 2 : 1;
   const ch = host ? host.clientHeight : 0;
-  const smallView = coarse || cw * ch < 420000;      // 触屏，或窗口本身很小
+  const smallView = coarse || cw * ch < 420000;      // touch device, or a very small window
   if (tier === 2 && smallView) {
     const limit = Math.max(28, Math.min(160, Math.round((cw * ch) / 1600)));
     let cnt = 0;
@@ -919,7 +919,7 @@ function setMarkerSize(n, fs) {
   n.dot.setAttribute("stroke-width", (0.7 * mk).toFixed(2));
   n.halo.setAttribute("r", ((DOT_R + 3.4) * mk).toFixed(2));
   n.halo.setAttribute("stroke-width", (1.2 * mk).toFixed(2));
-  /* 城市名统一用柔和的灰蓝，中英文同一字号，避免两套大小来回跳 */
+  /* City names use the same soft gray-blue and font size in both languages to avoid size jumps */
   const fsz = fs * 0.84;
   n.label.setAttribute("font-size", fsz.toFixed(2));
   n.label.setAttribute("stroke-width", (fsz * 0.2).toFixed(2));
@@ -938,18 +938,18 @@ function textWidth(str, size) {
   for (const ch of str) w += /[\u4e00-\u9fff\uff00-\uffef]/.test(ch) ? size : size * 0.56;
   return w;
 }
-/* 标签避让：每个城市尝试右/左/下/上四个方位，按重要度依次安置 */
+/* Label decluttering: try right/left/below/above for each city, placing them in order of importance */
 function layoutLabels() {
   cityNodes.forEach(n => { n.label.style.display = "none"; });
   if (!showLabels) return;
-  const fs = BASE_FONT * mk * 0.84;   // 与 setMarkerSize 保持同一字号，避让框才准
+  const fs = BASE_FONT * mk * 0.84;   // match setMarkerSize's font size so collision boxes are accurate
   const gap = 5.5 * mk;
-  /* 只处理当前可见、且未被大洲筛选排除的城市；中文模式下非中文名的城市只留点 */
+  /* Only process visible cities not excluded by the region filter; in zh mode, cities without a Chinese name keep dots only */
   const visible = cityNodes.filter(n =>
     n._vis && (lang === "en" || !n.latin) &&
     (activeRegion === "全部" || n.c.co === activeRegion));
 
-  /* 城市点位一起作为占位，避免标签压住别的城市 */
+  /* City dots also act as obstacles so labels do not cover other cities */
   const dots = visible.map(n => ({
     i: n.i, x: n.cx - (DOT_R + 0.6) * mk, y: n.cy - (DOT_R + 0.6) * mk,
     w: (DOT_R + 0.6) * 2 * mk, h: (DOT_R + 0.6) * 2 * mk
@@ -971,7 +971,7 @@ function layoutLabels() {
     });
   }
 
-  /* 标签数量按可视面积封顶：小屏上少放一些，否则密到看不清 */
+  /* Cap the label count by visible area: fewer on small screens, otherwise it becomes unreadable */
   const capLabels = Math.max(14, Math.min(180,
     Math.round((wrap.clientWidth * wrap.clientHeight) / 2600)));
   let placedCount = 0;
@@ -979,14 +979,14 @@ function layoutLabels() {
   function tryPlace(n, base) {
     if (placedCount >= capLabels) return false;
     const w = textWidth(n.label.textContent || n.c.n, fs) + 2 * mk;
-    const pad = fs * 0.14;                  // 标签之间留出实际间隙，避免糊成一片
+    const pad = fs * 0.14;                  // leave a real gap between labels so they do not merge
     for (const cand of candidates(n, w)) {
       const b = cand.box;
-      /* 越界判定跟随视野，不再用固定的 78 单位阈值 */
+      /* Out-of-bounds checks follow the viewport instead of a fixed 78-unit threshold */
       if (b.x < vb.x + 1 || b.x + b.w > vb.x + vb.w - 1) continue;
       if (b.y < vb.y + 1 || b.y + b.h > vb.y + vb.h - 1) continue;
       const pb = { i: n.i, x: b.x - pad, y: b.y - pad, w: b.w + pad * 2, h: b.h + pad * 2 };
-      /* 只避让其他标签；不再避让城市圆点，否则欧洲这种密集区里大城市名字会被挤掉 */
+      /* Avoid other labels only; not city dots, or major-city names in dense areas like Europe get squeezed out */
       const clash = placedLabels.some(p => p.i !== n.i &&
           pb.x < p.x + p.w && pb.x + pb.w > p.x && pb.y < p.y + p.h && pb.y + pb.h > p.y);
       if (clash) continue;
@@ -1001,7 +1001,7 @@ function layoutLabels() {
     return false;
   }
 
-  /* 先给重点城市腾位置，再安置其余城市；同级里人口多的优先，保证巴黎、柏林这类大城市名字不被挤掉 */
+  /* Reserve space for key cities first, then place the rest; within a tier, higher population first so names like Paris and Berlin are not squeezed out */
   const order = visible.slice().sort((a, b) =>
     ((a.c.lv || 9) - (b.c.lv || 9)) || ((b.c.p || 0) - (a.c.p || 0)) || (a.i - b.i));
   const majors = order.filter(n => n.c.big);
@@ -1010,13 +1010,13 @@ function layoutLabels() {
   for (const n of rest) tryPlace(n, dots);
 }
 
-/* 每帧更新的城市外观 */
+/* Per-frame city appearance */
 function paintCities(now) {
   const s = sunGeom(now);
   let day = 0, night = 0, shown = 0;
   for (const n of cityNodes) {
     const c = n.c;
-    /* 只对当前分级下可见的城市算昼夜，省掉大部分三角函数 */
+    /* Only compute day/night for cities visible at the current tier, skipping most trigonometry */
     if (n._vis) {
       const a = sunAlt(c.la, c.lo, s) / RAD;
       const isDay = a > -0.833;
@@ -1038,7 +1038,7 @@ function paintCities(now) {
 }
 
 /* =========================================================
-   8. 参考时间与时钟
+   8. Reference time and clock
    ========================================================= */
 const refTabs = document.getElementById("refTabs");
 let refZone = "local";
@@ -1063,7 +1063,7 @@ function renderRefClock(now) {
 }
 
 /* =========================================================
-   9. 悬浮卡
+   9. Hover card
    ========================================================= */
 const tip = document.getElementById("tip");
 const wrap = document.getElementById("mapwrap");
@@ -1098,8 +1098,8 @@ function cityTipHTML(n, now) {
   }
   const refLabel = refZone === "UTC" ? "UTC" : T("tabLocal");
   const alt = lang === "en"
-    ? (c.e && c.n !== c.e ? c.n : "")        // 英文模式副标题显示中文名
-    : (c.e && c.e !== c.n ? c.e : "");       // 中文模式副标题显示英文名
+    ? (c.e && c.n !== c.e ? c.n : "")        // en mode shows the Chinese name as subtitle
+    : (c.e && c.e !== c.n ? c.e : "");       // zh mode shows the English name as subtitle
   return `
     <div class="tname">${cityName(c)}${alt ? `<em>${alt}</em>` : ""}</div>
     <div class="tregion">${countryName(c)} · ${regionName(c.co)}</div>
@@ -1123,10 +1123,10 @@ function moveTip(ev) {
   tip.style.top = y + "px";
 }
 
-/* 命中半径：触屏取 44px（无障碍最小点按尺寸），鼠标 13px；
-   边界由当前视野换算，缩放后依然按屏幕像素算 */
+/* Hit radius: 44px on touch (minimum accessible tap target), 13px with a mouse;
+   the threshold is converted from the current viewport so it stays in screen pixels after zooming */
 let coarse = !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches)
-  || /[?&]touch=1/.test(location.search);      // ?touch=1 用于桌面/无头环境调试触屏布局
+  || /[?&]touch=1/.test(location.search);      // ?touch=1 enables touch layout for desktop/headless debugging
 const mqCoarse = window.matchMedia ? window.matchMedia("(pointer: coarse)") : null;
 if (mqCoarse) {
   const onMq = e => { coarse = e.matches; };
@@ -1135,7 +1135,7 @@ if (mqCoarse) {
 }
 function hitPx() { return coarse ? 44 : 13; }
 
-/* 屏幕坐标 → 当前视野下的 SVG 坐标，并返回半径内的全部城市（近→远） */
+/* Screen coordinates → SVG coordinates in the current viewport, returning all cities within the radius (near → far) */
 function pickCandidates(ev) {
   const r = wrap.getBoundingClientRect();
   const sx = vb.x + (ev.clientX - r.left) / r.width * vb.w;
@@ -1143,13 +1143,13 @@ function pickCandidates(ev) {
   const radUser = hitPx() * vb.w / r.width;
   const hits = [];
   for (const n of cityNodes) {
-    if (!n._vis) continue;                       // 只命中当前分级下已显示的城市
+    if (!n._vis) continue;                       // only hit cities currently shown at this tier
     if (activeRegion !== "全部" && n.c.co !== activeRegion) continue;
     const d = Math.hypot(n.cx - sx, n.cy - sy);
     if (d <= radUser) hits.push({ n, d });
   }
   hits.sort((a, b) => a.d - b.d);
-  /* 只取最近的 6 个：44px 半径在未放大时可能覆盖整个欧洲，全部列出没有意义 */
+  /* Keep only the nearest 6: a 44px radius can cover all of Europe when unzoomed, so listing everything is useless */
   return hits.slice(0, 6).map(o => o.n);
 }
 function pickCity(ev) {
@@ -1162,7 +1162,7 @@ function highlight(n) {
   if (n) n.halo.setAttribute("opacity", ".95");
 }
 function setHover(n, ev) {
-  if (coarse) return;                       // 触屏没有悬停语义
+  if (coarse) return;                       // touch devices have no hover
   if (hovered === n) { if (n) moveTip(ev); return; }
   hovered = n;
   highlight(n);
@@ -1176,7 +1176,7 @@ function setHover(n, ev) {
 }
 
 /* =========================================================
-   10. 钉住对比
+   10. Pinned comparison
    ========================================================= */
 const pinsEl = document.getElementById("pins");
 const pinned = [];
@@ -1224,7 +1224,7 @@ function togglePin(n) {
 }
 
 /* =========================================================
-   10.5 触屏底部卡片（点选城市 / 密集区候选）
+   10.5 Touch bottom sheet (selected city / candidates in dense areas)
    ========================================================= */
 const sheetEl = document.getElementById("sheet");
 const sheetBody = document.getElementById("sheetBody");
@@ -1235,7 +1235,7 @@ let lastCandidates = [];
 function renderSheet() {
   if (!sheetState) return;
   const now = new Date();
-  const keepScroll = sheetEl.scrollTop;   // 每秒刷新时保留滚动位置
+  const keepScroll = sheetEl.scrollTop;   // preserve scroll position during the once-per-second refresh
   if (sheetState.type === "cands") {
     sheetTitle.textContent = T("cands", sheetState.list.length);
     sheetBody.innerHTML = `<div class="cand">` + sheetState.list.map(n => {
@@ -1290,9 +1290,9 @@ sheetEl.addEventListener("click", e => {
 document.getElementById("sheetClose").addEventListener("click", closeSheet);
 
 /* =========================================================
-   10.8 缩放与拖拽
+   10.8 Zoom and pan
    ========================================================= */
-const MIN_W = W / 6;                 // 最大放大 6 倍（视野宽 200）
+const MIN_W = W / 6;                 // maximum zoom 6× (viewport width 200)
 let viewDirty = false, zooming = false;
 let pointers = new Map();
 let dragDist = 0, pinchDist = 0, lastPtr = null;
@@ -1308,7 +1308,7 @@ function clampView(v) {
   };
 }
 
-/* 缩放期间的昼夜层重绘：节流到 ~90ms，避免每帧都算 58 万像素 */
+/* Night-layer redraw during zoom: throttle to ~90ms to avoid computing 580k pixels every frame */
 function scheduleShade() {
   if (shadeTimer) return;
   const wait = Math.max(0, 90 - (performance.now() - lastShadeAt));
@@ -1324,7 +1324,7 @@ function flushShade() {
   drawNight(Date.now());
 }
 
-/* 统一的应用入口：钳制 → 写 viewBox → 更新标记 → 重绘节奏 */
+/* Unified apply entry: clamp → write viewBox → update markers → redraw cadence */
 function applyView(v, opt) {
   const nv = clampView(v);
   setViewBox(nv);
@@ -1366,10 +1366,10 @@ function endGesture() {
     wrap.classList.remove("zooming");
     layoutLabels();
   } else {
-    layoutLabels();          // 平移后视野内新出现的城市需要补标签
+    layoutLabels();          // cities newly visible after panning need labels
   }
   flushShade();
-  lastMk = -1;               // 下一帧强制刷新尺寸
+  lastMk = -1;               // force a size refresh next frame
 }
 
 function ptrDist() {
@@ -1389,7 +1389,7 @@ wrap.addEventListener("pointerdown", ev => {
   if (window.__mode === "globe") return;
   if (ev.button !== undefined && ev.button !== 0) return;
   pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
-  try { wrap.setPointerCapture(ev.pointerId); } catch (e) { /* 忽略 */ }
+  try { wrap.setPointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
   if (pointers.size === 1) {
     dragDist = 0;
     lastPtr = { x: ev.clientX, y: ev.clientY };
@@ -1434,7 +1434,7 @@ function releasePointer(ev) {
   if (window.__mode === "globe") return;
   if (!pointers.has(ev.pointerId)) return;
   pointers.delete(ev.pointerId);
-  try { wrap.releasePointerCapture(ev.pointerId); } catch (e) { /* 忽略 */ }
+  try { wrap.releasePointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
   if (pointers.size === 1) {
     const it = [...pointers.values()][0];
     lastPtr = { x: it.x, y: it.y };
@@ -1450,7 +1450,7 @@ wrap.addEventListener("pointerleave", () => {
   if (!coarse && pointers.size === 0) setHover(null);
 });
 
-/* 滚轮缩放：以光标为锚点 */
+/* Wheel zoom anchored at the cursor */
 wrap.addEventListener("wheel", ev => {
   if (window.__mode === "globe") return;
   ev.preventDefault();
@@ -1465,7 +1465,7 @@ wrap.addEventListener("wheel", ev => {
 }, { passive: false });
 let wheelEndTimer = 0;
 
-/* 双击放大 / 已放大时双击复位 */
+/* Double-click to zoom in / reset when already zoomed */
 wrap.addEventListener("dblclick", ev => {
   if (window.__mode === "globe") return;
   ev.preventDefault();
@@ -1482,7 +1482,7 @@ wrap.addEventListener("dblclick", ev => {
 });
 
 /* =========================================================
-   10.9 城市搜索
+   10.9 City search
    ========================================================= */
 const searchEl = document.getElementById("citySearch");
 const searchBoxEl = document.getElementById("searchBox");
@@ -1524,12 +1524,12 @@ function doSearch(q) {
   renderResults();
 }
 
-/* 选中城市：直接跳到二级视野（不走动画，避免帧调度导致卡在中途） */
+/* Focus a city: jump straight to tier-2 view (no animation, avoiding frame-scheduling stalls) */
 function focusCity(n) {
   hideResults();
   searchEl.value = n.c.n;
   if (window.__mode === "globe" && window.Globe) { Globe.focusCity(n.c); return; }
-  if (activeRegion !== "全部") {          // 清掉大洲筛选，避免搜到的城市被过滤掉
+  if (activeRegion !== "全部") {          // clear the region filter so the found city is not filtered out
     activeRegion = "全部";
     document.querySelectorAll("#regionChips .chip").forEach((c, i) =>
       c.classList.toggle("on", i === 0));
@@ -1584,11 +1584,11 @@ document.addEventListener("click", ev => {
 });
 
 /* =========================================================
-   11. 事件绑定
+   11. Event binding
    ========================================================= */
 wrap.addEventListener("click", ev => {
   if (window.__mode === "globe") return;
-  if (dragDist > 6) { dragDist = 0; return; }   // 拖拽结束的那次 click 不算点选
+  if (dragDist > 6) { dragDist = 0; return; }   // ignore the click that ends a drag
   if (coarse) {
     const list = pickCandidates(ev);
     if (!list.length) { closeSheet(); return; }
@@ -1607,7 +1607,7 @@ document.getElementById("tgNight").addEventListener("click", e => {
 });
 document.getElementById("tgLabels").addEventListener("click", e => {
   showLabels = e.currentTarget.classList.toggle("on");
-  applyMarkerScale();          // 一并刷新城市标签与水体名称
+  applyMarkerScale();          // also refresh city labels and water-body names
 });
 
 refTabs.addEventListener("click", e => {
@@ -1621,8 +1621,8 @@ refTabs.addEventListener("click", e => {
   if (hovered) tip.innerHTML = cityTipHTML(hovered, now);
 });
 
-/* ---------- 视野聚焦：按大洲包围盒缩放 ---------- */
-/* 计算某大洲的包围盒（含留白），强制 2:1 宽高比，并限制最大放大倍数 */
+/* ---------- Region focus: zoom to the continent's bounding box ---------- */
+/* Compute a continent's bounding box (with padding), force a 2:1 aspect ratio, and cap the maximum zoom */
 function regionBox(co) {
   if (co === "全部") return { x: 0, y: 0, w: W, h: H };
   const lons = [], lats = [];
@@ -1633,7 +1633,7 @@ function regionBox(co) {
   }
   if (!lons.length) return { x: 0, y: 0, w: W, h: H };
 
-  /* 经度按环形取最小跨度：跨 180° 的区域（大洋洲）否则会被算成包住整个地球 */
+  /* Longitudes use the smallest circular span; otherwise regions spanning 180° (Oceania) would wrap the whole globe */
   const s = lons.slice().sort((a, b) => a - b);
   let gap = -1, gi = s.length - 1;
   for (let i = 0; i < s.length; i++) {
@@ -1652,7 +1652,7 @@ function regionBox(co) {
   const padY = Math.max(22, (y1 - y0) * 0.16);
   x0 -= padX; x1 += padX; y0 -= padY; y1 += padY;
   let w = x1 - x0, h = y1 - y0;
-  const MIN_W = W / 5;                     // 最多放大 5 倍，避免单城市区域飞得太近
+  const MIN_W = W / 5;                     // cap zoom at 5× to avoid flying too close for single-city regions
   if (w < MIN_W) { const c = (x0 + x1) / 2; w = MIN_W; x0 = c - w / 2; }
   if (h < MIN_W / 2) { const c = (y0 + y1) / 2; h = MIN_W / 2; y0 = c - h / 2; }
   if (w / h > 2) { h = w / 2; y0 = (y0 + y1) / 2 - h / 2; }
@@ -1676,8 +1676,8 @@ function animateView(to) {
   const target = clampView(to);
   if (Math.abs(from.w - target.w) < 0.5 && Math.abs(from.x - target.x) < 0.5 &&
       Math.abs(from.y - target.y) < 0.5) {
-    /* 视野没变（比如点“大洋洲”被钳到全图后再点“全部”）：动画不会跑，
-       但大洲筛选已经换人，标签必须立刻重排一次，否则旧筛选的标签会一直留着 */
+    /* Viewport unchanged (e.g. clicking "All" after "Oceania" was clamped to the full map): the animation won't run,
+       but the region filter changed, so labels must be re-laid out immediately; otherwise stale labels persist */
     layoutLabels();
     return;
   }
@@ -1708,13 +1708,13 @@ function animateView(to) {
     }, { zoom: true });
     if (k >= 1) finish();
   }
-  /* 用定时器驱动而不是 rAF：后台标签页与无头环境里 rAF 可能一直不执行，会把动画卡在中途 */
+  /* Drive with a timer instead of rAF: in background tabs and headless environments rAF may never fire, stalling the animation */
   animTimer = setInterval(step, 16);
   step();
   setTimeout(finish, dur + 180);
 }
 
-/* 大洲筛选 + 聚焦（点一次即缩放到该大洲，点“全部”复位） */
+/* Region filter + focus (one click zooms to that region; "All" resets) */
 const REGION_ORDER = ["全部", "亚洲", "欧洲", "非洲", "北美", "南美", "大洋洲", "俄罗斯", "南极"];
 const REGION_LIST = (function () {
   const present = new Set(CITIES.map(c => c.co));
@@ -1742,7 +1742,7 @@ function renderChips() {
 })();
 
 /* =========================================================
-   12. 主循环
+   12. Main loop
    ========================================================= */
 let lastGlobeSun = 0;
 let lastNight = 0;
@@ -1750,7 +1750,7 @@ function tick() {
   const now = new Date();
   renderRefClock(now);
   if (window.__mode === "globe") {
-    /* 地球模式：只按 20 秒节奏刷新太阳位置，平面渲染全部跳过 */
+    /* Globe mode: refresh the sun position every 20s only; skip all flat rendering */
     if (now.getTime() - (lastGlobeSun || 0) > 20000) { lastGlobeSun = now.getTime(); gRender(); }
     return;
   }
@@ -1771,7 +1771,7 @@ if (coarse) {
   buildPins();
 }
 const mapStage = document.querySelector(".mapstage");
-/* 宽屏下把地图撑到「可用高度能容纳的最大 2:1 尺寸」，保证无论屏幕多大都铺满且不变形 */
+/* On wide screens, size the map to the largest 2:1 rectangle that fits the available height, filling any screen without distortion */
 function fitMap() {
   const wide = window.matchMedia("(min-width:1100px)").matches;
   const shortLandscape = window.matchMedia("(max-height:560px) and (orientation:landscape)").matches;
@@ -1792,7 +1792,7 @@ applyMarkerScale();
 tick();
 setInterval(tick, 1000);
 
-/* 手机地址栏收起/展开会改变可视高度：同步到 --appH，再重新量一次地图 */
+/* Mobile address-bar show/hide changes the visual height: sync it to --appH and re-measure the map */
 function syncViewport() {
   const vv = window.visualViewport;
   const h = vv ? vv.height : window.innerHeight;
@@ -1822,14 +1822,14 @@ window.addEventListener("resize", () => {
 });
 
 /* =========================================================
-   13. 地球视图（与平面视图共用城市数据与时间逻辑）
+   13. Globe view (shares city data and time logic with the flat view)
    ========================================================= */
 window.__mode = "flat";
 
 const GC = document.getElementById("globeCv");
 const gctx = GC.getContext("2d");
 
-/* 把国界路径解析成经纬度环 */
+/* Parse country-border paths into lat/lon rings */
 const GRINGS = (function (d) {
   const rings = [];
   const tokens = (d || "").match(/[MLZ]|-?\d+(?:\.\d+)?/g) || [];
@@ -1857,7 +1857,7 @@ let gcx = 0, gcy = 0, gR = 1;
 let glabels = [], gNightOn = true, gNeedLabels = true;
 const gp = { x: 0, y: 0, z: 0 };
 
-/* 正交投影：z>0 表示朝向相机 */
+/* Orthographic projection: z > 0 means facing the camera */
 function gProject(lat, lon, out) {
   const la = lat * RAD, la0 = gview.lat * RAD, dl = (lon - gview.lon) * RAD;
   const cl = Math.cos(la), sl = Math.sin(la);
@@ -1879,7 +1879,7 @@ function gResize() {
   gR = Math.min(w, h) * 0.44 * gview.zoom;
 }
 
-/* 昼夜遮罩：低分辨率离屏逐像素点积 */
+/* Day/night mask: low-resolution offscreen per-pixel dot product */
 const GN = 160;
 const gNightCv = document.createElement("canvas");
 gNightCv.width = gNightCv.height = GN;
@@ -1894,14 +1894,14 @@ function gViewPoint(lat, lon) {
   return { x: cl * Math.sin(dl), y: cl0 * sl - sl0 * cl_dl, z: sl0 * sl + cl0 * cl_dl };
 }
 
-/* 经纬网：每 30° 一格，外加赤道 / 回归线 / 极圈 / 本初子午线 */
+/* Graticule: every 30°, plus the equator / tropics / polar circles / prime meridian */
 const G_EQUATOR = 0, G_TROPIC = 23.44, G_POLAR = 66.56;
 function gDrawGrid() {
   const thin = "rgba(122,166,255,.10)";
   gctx.lineWidth = 0.8;
   gctx.strokeStyle = thin;
 
-  /* 经线 */
+  /* Meridians */
   for (let lon = -180; lon < 180; lon += 30) {
     gctx.beginPath();
     let on = false;
@@ -1912,7 +1912,7 @@ function gDrawGrid() {
     }
     gctx.stroke();
   }
-  /* 纬线（每 30°，赤道单独画） */
+  /* Parallels (every 30°; the equator is drawn separately) */
   for (let lat = -60; lat <= 60; lat += 30) {
     if (lat === 0) continue;
     gctx.beginPath();
@@ -1925,7 +1925,7 @@ function gDrawGrid() {
     gctx.stroke();
   }
 
-  /* 特殊线 */
+  /* Special lines */
   const special = [
     { lat: G_EQUATOR,        color: "rgba(122,166,255,.34)", text: T("gEquator") },
     { lat: G_TROPIC,         color: "rgba(245,185,66,.28)",  text: T("gTropicN"), small: true },
@@ -1945,7 +1945,7 @@ function gDrawGrid() {
     gctx.lineWidth = 1.1;
     gctx.stroke();
   }
-  /* 本初子午线 */
+  /* Prime meridian */
   gctx.beginPath();
   {
     let on = false;
@@ -1959,9 +1959,9 @@ function gDrawGrid() {
   gctx.lineWidth = 1.1;
   gctx.stroke();
 
-  /* 线的名字：在几个经度里挑一个附近没有城市名的位置 */
+  /* Line labels: pick a longitude among a few options where no city name is nearby */
   if (!showLabels) return;
-  const fsBase = gview.zoom > 2.4 ? 12 : 11;      // 固定屏幕字号，不随缩放变大
+  const fsBase = gview.zoom > 2.4 ? 12 : 11;      // fixed screen font size, does not grow with zoom
   gctx.textBaseline = "middle";
   gctx.textAlign = "center";
   gctx.lineWidth = 3;
@@ -1969,7 +1969,7 @@ function gDrawGrid() {
   for (const sp of special) {
     const p = gFreeSpot(sp.lat, gview.lon, sp.small ? 32 : 26);
     if (!p) continue;
-    /* 回归线名字更长，字号再小一档，免得压过赤道和极圈 */
+    /* Tropical names are longer, so use a smaller size so they do not overpower the equator and polar circles */
     const fs = sp.small ? fsBase * 0.8 : fsBase;
     gctx.font = fs.toFixed(1) + "px 'Microsoft YaHei',system-ui,sans-serif";
     gctx.strokeText(sp.text, p.x, p.y - fs * 0.7);
@@ -1977,14 +1977,14 @@ function gDrawGrid() {
     gctx.fillText(sp.text, p.x, p.y - fs * 0.7);
   }
 
-  /* 度数标注：纬线靠左缘，经线沿赤道 */
+  /* Degree labels: latitudes near the left edge, longitudes along the equator */
   const fsDeg = 10;
   gctx.font = fsDeg + "px 'Segoe UI',system-ui,sans-serif";
   gctx.lineWidth = 2.6;
   gctx.strokeStyle = "rgba(5,9,18,.8)";
   gctx.fillStyle = "rgba(158,190,230,.6)";
   for (let lat = -60; lat <= 60; lat += 30) {
-    if (lat === 0) continue;                       // 赤道有名字，不重复标度数
+    if (lat === 0) continue;                       // the equator has a name; skip its degree label
     let q = null;
     for (let d = 52; d <= 88; d += 3) {
       const p = gProject(lat, gview.lon - d, { x: 0, y: 0, z: 0 });
@@ -1996,7 +1996,7 @@ function gDrawGrid() {
     gctx.fillText(txt, q.x, q.y);
   }
   for (let lon = -180; lon < 180; lon += 60) {
-    if (lon === 0) continue;                       // 本初子午线有名字
+    if (lon === 0) continue;                       // the prime meridian has a name
     let q = null;
     for (const dLat of [0, -7, 7, -15, 15, -25, 25]) {
       const p = gProject(dLat, lon, { x: 0, y: 0, z: 0 });
@@ -2010,7 +2010,7 @@ function gDrawGrid() {
   }
 }
 
-/* 在一条纬线上找一个「附近没有城市名」的位置，避免标注压住城市 */
+/* Find a position on a parallel where no city name is nearby, so the label does not cover cities */
 function gFreeSpot(lat, baseLon, halfW) {
   const offsets = [0, -58, 58, -110, 110, -160, 160];
   const tier = gTier();
@@ -2032,10 +2032,10 @@ function gFreeSpot(lat, baseLon, halfW) {
   return fallback;
 }
 
-/* 水体名：与平面版共用 WATERS 与 WATER_EN，按同样的大洲尺度门槛显隐 */
+/* Water-body names: share WATERS and WATER_EN with the flat view, shown at the same scale thresholds */
 function gDrawWaters() {
   if (!showLabels) return;
-  /* 固定屏幕字号：放大时球体变大，但字不能跟着变大，否则地中海、里海会糊满一屏 */
+  /* Fixed screen font size: the globe grows when zoomed, but text must not, or the Mediterranean and Caspian would fill the screen */
   const fs = gview.zoom > 2.4 ? 12 : 11;
   gctx.font = fs + "px 'Microsoft YaHei',system-ui,sans-serif";
   gctx.textBaseline = "middle";
@@ -2043,7 +2043,7 @@ function gDrawWaters() {
   gctx.lineWidth = 3;
   gctx.strokeStyle = "rgba(5,9,18,.85)";
   for (const wt of WATERS) {
-    /* 平面版的判据是 vb.w <= wt.w；地球模式的等效视野宽 = 1200 / zoom */
+    /* The flat view uses vb.w <= wt.w; the globe's equivalent viewport width is 1200 / zoom */
     if (1200 / gview.zoom > wt.w) continue;
     const p = gProject(wt.la, wt.lo, gp);
     if (p.z <= 0.12) continue;
@@ -2055,7 +2055,7 @@ function gDrawWaters() {
   }
 }
 
-/* 太阳直射点：地球模式里明暗的源头，画成一个光斑 */
+/* Subsolar point: the source of light and shadow in globe mode, drawn as a glow */
 function gDrawSunSpot(nowMs) {
   const sl = sunLatLon(nowMs);
   const p = gProject(sl.lat, sl.lon, gp);
@@ -2112,7 +2112,7 @@ function gRender() {
   gResize();
   gctx.clearRect(0, 0, wrap.clientWidth, wrap.clientHeight);
 
-  /* 海洋球体 */
+  /* Ocean sphere */
   const grad = gctx.createRadialGradient(gcx - gR * 0.3, gcy - gR * 0.35, gR * 0.1, gcx, gcy, gR * 1.02);
   grad.addColorStop(0, "#16273f");
   grad.addColorStop(0.65, "#0d182a");
@@ -2122,7 +2122,7 @@ function gRender() {
   gctx.fillStyle = grad;
   gctx.fill();
 
-  /* 陆地 */
+  /* Land */
   gctx.beginPath();
   for (const ring of GRINGS) {
     let started = false;
@@ -2146,7 +2146,7 @@ function gRender() {
   gDrawSunSpot(now);
   gDrawWaters();
 
-  /* 城市点 */
+  /* City dots */
   const s = sunGeom(now);
   const tier = gTier();
   const dotR = gview.zoom > 2.4 ? 3.2 : 2.6;
@@ -2169,7 +2169,7 @@ function gRender() {
     gctx.stroke();
   }
 
-  /* 标签 */
+  /* Labels */
   if (showLabels) {
     if (gNeedLabels) { gLayoutLabels(); gNeedLabels = false; }
     gctx.textBaseline = "middle";
@@ -2227,7 +2227,7 @@ function gLayoutLabels() {
       boxes.push(box);
       glabels.push({
         text, x: t.x, y: t.y, z: c._gz, fs, align: t.a,
-        color: "rgba(186,203,228,.62)"      // 与平面版统一：柔和的灰蓝
+        color: "rgba(186,203,228,.62)"      // consistent with the flat view: soft gray-blue
       });
       break;
     }
@@ -2255,7 +2255,7 @@ function gShowTip(c, clientX, clientY) {
 }
 function gHideTip() { tip.classList.remove("show"); }
 
-/* ---- 地球视图交互 ---- */
+/* ---- Globe view interaction ---- */
 let gDrag = false, gMoved = 0, gLastX = 0, gLastY = 0;
 const gPointers = new Map();
 let gPinch = 0, gLabelTimer = 0;
@@ -2264,7 +2264,7 @@ wrap.addEventListener("pointerdown", ev => {
   if (window.__mode !== "globe") return;
   if (ev.button !== undefined && ev.button !== 0) return;
   gPointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
-  try { wrap.setPointerCapture(ev.pointerId); } catch (e) { /* 忽略 */ }
+  try { wrap.setPointerCapture(ev.pointerId); } catch (e) { /* ignore */ }
   if (gPointers.size === 1) {
     gDrag = true; gMoved = 0;
     gLastX = ev.clientX; gLastY = ev.clientY;
@@ -2358,7 +2358,7 @@ wrap.addEventListener("dblclick", ev => {
   gRender();
 });
 
-/* ---- 对外接口 ---- */
+/* ---- Public interface ---- */
 function gFocusTo(lat, lon, zoom) {
   gview.lat = Math.max(-85, Math.min(85, lat));
   gview.lon = lon;
@@ -2398,7 +2398,7 @@ const Globe = {
 };
 window.Globe = Globe;
 
-/* ---- 模式切换 ---- */
+/* ---- Mode switching ---- */
 function setViewMode(m) {
   window.__mode = m;
   wrap.classList.toggle("globe", m === "globe");
@@ -2421,7 +2421,7 @@ document.getElementById("tgGlobe").addEventListener("click", () => {
 });
 
 /* =========================================================
-   14. 语言切换
+   14. Language switching
    ========================================================= */
 function applyLang() {
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
@@ -2478,26 +2478,26 @@ function applyLang() {
 
 document.getElementById("tgLang").addEventListener("click", () => {
   lang = lang === "zh" ? "en" : "zh";
-  try { localStorage.setItem("wtm-lang", lang); } catch (e) { /* 忽略 */ }
+  try { localStorage.setItem("wtm-lang", lang); } catch (e) { /* ignore */ }
   applyLang();
 });
 
-/* 竖屏提示：点一下关掉，本次会话不再出现 */
+/* Portrait hint: tap to dismiss for this session */
 (function rotateHintInit() {
   const el = document.getElementById("rotateHint");
   if (!el) return;
   try {
     if (sessionStorage.getItem("wtm-rotate-hint") === "off") el.classList.add("hide");
-  } catch (e) { /* 忽略 */ }
+  } catch (e) { /* ignore */ }
   el.addEventListener("click", () => {
     el.classList.add("hide");
-    try { sessionStorage.setItem("wtm-rotate-hint", "off"); } catch (e) { /* 忽略 */ }
+    try { sessionStorage.setItem("wtm-rotate-hint", "off"); } catch (e) { /* ignore */ }
   });
 })();
 
 applyLang();
 
-/* 默认打开就是地球模式：切换按钮的文案、副标题、画布都走同一套逻辑 */
+/* Open in globe mode by default: button text, subtitle, and canvas all go through the same logic */
 setViewMode("globe");
 </script>
 </body>
