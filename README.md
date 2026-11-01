@@ -1,26 +1,24 @@
-# 世界时间地图 · World Time Map
+# World Time Map
 
-一个单文件的交互式世界时间地图：在同一张地图上查看全球 1600+ 个城市的当前时间、时区偏移与真实的昼夜分布。无需安装、无需联网，双击打开即可使用。
+An interactive, single-file world time map: view the current local time, UTC offset, and real day/night distribution for 1,600+ cities around the globe. No installation or internet connection required — just open the HTML file.
 
-> An interactive, single-file world time map — current local time for 1,600+ cities with a live day/night terminator computed from the real solar position. Fully offline, no dependencies.
+## Features
 
-## 功能特性
+- **Live day/night terminator** — the shadow is computed from the real solar position (declination and hour angle) and moves smoothly over time, instead of using coarse timezone blocks.
+- **1,605 cities** — capitals and major cities worldwide, with coordinates, IANA timezones, and population tiers embedded.
+- **Flat map + 3D globe** — switch between an equirectangular 2D map and a rotatable 3D globe with one click.
+- **Zoom and pan** — mouse wheel, drag, and two-finger gestures, up to 6× zoom.
+- **Hover details** — hover over a city to see its local date/time, timezone name, difference from the reference clock, and today's sunrise/sunset.
+- **City search** — search by Chinese or English name to focus and zoom to a city.
+- **Continent filters** — quickly filter by Asia, Europe, Africa, North America, South America, Oceania, Russia, or Antarctica, with automatic zoom to the region.
+- **Local and UTC reference clock** — toggle the clock at the top between local time and UTC for easy timezone conversion.
+- **Pinned cities** — pin cities of interest to compare their times at a glance.
+- **Bilingual UI** — switch between Chinese and English; the preference is stored locally.
+- **Fully offline** — city data, map outline, styles, and all logic are embedded in a single HTML file, with no external requests.
 
-- **实时昼夜阴影**：根据太阳赤纬和时角实时计算晨昏线，阴影随时间平滑移动，而非简单的时区色块。
-- **1605 个城市**：内置各国首都与主要城市，含经纬度、IANA 时区、人口分级数据。
-- **平面地图 + 三维地球**：在 2D 等距圆柱投影和可旋转的 3D 地球之间一键切换。
-- **缩放与平移**：支持滚轮缩放、拖拽平移、双指手势，最多放大 6 倍。
-- **悬停查看**：鼠标悬停城市即显示当地日期时间、时区名称、与参考时钟的时差、当天日出日落。
-- **城市搜索**：输入中英文城市名即可快速定位并缩放到目标区域。
-- **大洲筛选**：按亚洲 / 欧洲 / 非洲 / 北美 / 南美 / 大洋洲 / 俄罗斯 / 南极快速筛选，并自动缩放到该区域。
-- **本地时钟与 UTC 对照**：顶部参考时钟可在本地时间与 UTC 之间切换，便于跨时区换算。
-- **图钉收藏**：点击固定感兴趣的城市，随时随地对比多个城市的时间。
-- **中英双语**：一键在中英文界面间切换，语言偏好保存在本地。
-- **离线可用**：城市数据、地图轮廓、所有样式与逻辑全部内嵌在同一个 HTML 文件中，不请求任何外部资源。
+## Usage
 
-## 使用方法
-
-直接用浏览器打开 `world-time-map.html` 即可：
+Open `world-time-map.html` directly in a browser:
 
 ```bash
 # Windows
@@ -33,44 +31,44 @@ open world-time-map.html
 xdg-open world-time-map.html
 ```
 
-也可以用任意静态服务器托管：
+You can also serve it with any static server:
 
 ```bash
 python -m http.server 8000
-# 然后访问 http://localhost:8000/world-time-map.html
+# then visit http://localhost:8000/world-time-map.html
 ```
 
-### 交互说明
+### Interactions
 
-| 操作 | 说明 |
+| Action | Description |
 | --- | --- |
-| 滚轮 / 双指 | 以光标为中心缩放地图 |
-| 拖动 | 平移视野 |
-| 悬停城市 | 显示当地时间、时区、日出日落 |
-| 点击城市 | 固定/取消图钉 |
-| 顶部「地球模式」 | 切换平面地图与三维地球 |
-| 顶部「EN / 中」 | 切换界面语言 |
+| Mouse wheel / pinch | Zoom in and out around the cursor |
+| Drag | Pan the map |
+| Hover a city | Show local time, timezone, sunrise and sunset |
+| Click a city | Pin or unpin it |
+| "Globe Mode" button | Toggle between flat map and 3D globe |
+| "EN / 中" button | Switch UI language |
 
-## 技术实现
+## Technical Notes
 
-- 纯 HTML / CSS / JavaScript，零依赖、零构建步骤。
-- 地图基于 SVG 绘制，昼夜阴影、太阳位置与三维地球使用 Canvas / SVG 混合渲染。
-- 昼夜线由太阳位置近似算法（赤纬 + 时角）计算，并用查找表（LUT）加速逐像素绘制，保证每秒刷新仍然流畅。
-- 城市标签采用避让布局算法，缩放时自动调整字号与密度，避免重叠。
-- 支持高 DPI 屏幕、宽屏自适应布局与触屏手势。
+- Pure HTML / CSS / JavaScript with no dependencies and no build step.
+- The map is drawn with SVG; the night shading, sun position, and 3D globe use a mix of Canvas and SVG rendering.
+- The terminator is derived from an approximate solar-position algorithm (declination plus hour angle), with lookup tables (LUTs) to speed up per-pixel rendering so it stays smooth at one update per second.
+- City labels use a collision-avoidance layout that adapts font size and density while zooming.
+- Supports high-DPI displays, wide-screen responsive layouts, and touch gestures.
 
-## 项目结构
+## Project Structure
 
 ```
 world-map/
-├── world-time-map.html   # 全部内容：样式、城市数据、地图与交互逻辑
+├── world-time-map.html   # Everything: styles, city data, map and interaction logic
 └── README.md
 ```
 
-## 数据说明
+## Data
 
-城市数据包含名称（中/英）、所属国家或地区、大洲、经纬度、IANA 时区与人口分级，已内嵌于 HTML 的 `window.CITIES_DATA` 中。时间换算依赖浏览器内置的 `Intl` 时区数据库，因此能自动处理夏令时（DST）变化。
+City data includes Chinese/English names, country or region, continent, coordinates, IANA timezone, and population tier, embedded in `window.CITIES_DATA` inside the HTML. Time conversion relies on the browser's built-in `Intl` timezone database, so daylight saving time (DST) transitions are handled automatically.
 
 ## License
 
-暂未指定开源许可证。如需公开使用或二次分发，请先与作者确认。
+No open-source license has been specified yet. Please contact the author before public reuse or redistribution.
